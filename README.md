@@ -1,3 +1,30 @@
+# grafana-loki-syslog-aio-prometheus-cadvisor-prometheus-promtail
+
+# 🚀 Grafana Loki Syslog All In One Syslog Deployable Stack 🚀
+
+https://github.com/coding-to-music/grafana-loki-syslog-aio-prometheus-cadvisor-prometheus-promtail
+
+From / By Dave Schmid https://github.com/lux4rd0/grafana-loki-syslog-aio
+
+https://github.com/lux4rd0/grafana-loki-syslog-aio
+
+## Environment variables:
+
+```java
+
+```
+
+## GitHub
+
+```java
+git init
+git add .
+git remote remove origin
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:coding-to-music/grafana-loki-syslog-aio-prometheus-cadvisor-prometheus-promtail.git
+git push -u origin main
+```
 
 ## grafana-loki-syslog-aio
 
@@ -5,11 +32,11 @@
 
 ## About The Project
 
-This Loki Syslog All-In-One example is geared to help you get up and running quickly with a Syslog ingestor and visualization of logs. It uses [Grafana Loki](https://grafana.com/oss/loki/) and Promtail as a receiver for forwarded syslog-ng logs. I wrote an [introductory blog post](https://labs.lux4rd0.com/2021/01/oldskool-syslog-meets-newskool-loki/) about how this AIO project came about as well (pesky intermittent network issues!!) 
+This Loki Syslog All-In-One example is geared to help you get up and running quickly with a Syslog ingestor and visualization of logs. It uses [Grafana Loki](https://grafana.com/oss/loki/) and Promtail as a receiver for forwarded syslog-ng logs. I wrote an [introductory blog post](https://labs.lux4rd0.com/2021/01/oldskool-syslog-meets-newskool-loki/) about how this AIO project came about as well (pesky intermittent network issues!!)
 
 <center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio_overview_sized.png"></center>
 
-*Note that this All In One is geared towards getting network traffic from legacy syslog (RFC3164 UDP port 514) into Loki via [syslog-ng](https://www.syslog-ng.com/) and [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/).*
+_Note that this All In One is geared towards getting network traffic from legacy syslog (RFC3164 UDP port 514) into Loki via [syslog-ng](https://www.syslog-ng.com/) and [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)._
 
 Essentially:
 
@@ -20,10 +47,10 @@ Essentially:
 
 The project is built around a pre-configured Docker stack of the following:
 
- - [Grafana](https://grafana.com/oss/grafana/)
- - [Grafana Loki](https://grafana.com/oss/loki/) (configured for [MinIO](https://min.io/))
- - [Grafana Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)
- - [syslog-ng](https://www.syslog-ng.com/)
+- [Grafana](https://grafana.com/oss/grafana/)
+- [Grafana Loki](https://grafana.com/oss/loki/) (configured for [MinIO](https://min.io/))
+- [Grafana Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)
+- [syslog-ng](https://www.syslog-ng.com/)
 
 The stack has been extended to include pre-configured monitoring with:
 
@@ -45,34 +72,34 @@ This project is built and tested on Linux CentOS 7. To get started, download the
     wget https://github.com/lux4rd0/grafana-loki-syslog-aio/archive/main.zip
     unzip main.zip
     cd grafana-loki-syslog-aio-main
-    
+
 From that directory, run the docker-compose command:
 
 **Full Example Stack:** Grafana, Loki with s3/MinIO, Promtail, syslog-ng, Prometheus, cAdvisor, node-exporter
 
     docker-compose -f ./docker-compose.yml up -d
 
-This will start to download all of the needed application containers and start them up. 
+This will start to download all of the needed application containers and start them up.
 
-*(Optional docker-compose configurations are listed under **Options** below)*
+_(Optional docker-compose configurations are listed under **Options** below)_
 
 **Grafana Dashboards**
 
 Once all of the docker containers are started up, point your Web browser to the Grafana page, typically http://hostname:3000/ - with hostname being the name of the server you ran the docker-compose up -d command on. The "Loki Syslog AIO - Overview" dashboard is defaulted without having to log in.
 
-*Note: this docker-compose stack is designed to be as easy as possible to deploy and go. Logins have been disabled, and the default user has an admin role. This can be changed to an Editor or Viewer role by changing the Grafana environmental variable in the docker-compose.yml file to:*
+_Note: this docker-compose stack is designed to be as easy as possible to deploy and go. Logins have been disabled, and the default user has an admin role. This can be changed to an Editor or Viewer role by changing the Grafana environmental variable in the docker-compose.yml file to:_
 
     GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
-    
+
 **Getting Started With Loki**
 
 Here are some additional resources you might find helpful if you're just getting started with Loki:
 
 - [Getting started with Grafana and Loki in under 4
-   minutes](https://grafana.com/go/webinar/loki-getting-started/)
+  minutes](https://grafana.com/go/webinar/loki-getting-started/)
 - [An (only slightly technical) introduction to Loki](https://grafana.com/blog/2020/05/12/an-only-slightly-technical-introduction-to-loki-the-prometheus-inspired-open-source-logging-system/)
 - [Video tutorial: Effective troubleshooting queries with Grafana
-   Loki](https://grafana.com/blog/2021/01/07/video-tutorial-effective-troubleshooting-queries-with-grafana-loki/)
+  Loki](https://grafana.com/blog/2021/01/07/video-tutorial-effective-troubleshooting-queries-with-grafana-loki/)
 
 ## Stack Options:
 
@@ -90,7 +117,7 @@ A few other docker-compose files are also available:
 
     docker-compose -f ./docker-compose-filesystem.yml up -d
 
-The *Syslog Generator* configuration will need access to the Internet to do a local docker build from the configurations location in ./generator. It'll provide some named hosts and random INFO, WARN, DEBUG, ERROR logs sent over to syslog-ng/Loki.
+The _Syslog Generator_ configuration will need access to the Internet to do a local docker build from the configurations location in ./generator. It'll provide some named hosts and random INFO, WARN, DEBUG, ERROR logs sent over to syslog-ng/Loki.
 
 <center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio_overview_generator_sized.png"></center>
 
@@ -109,7 +136,7 @@ The MinIO configurations default the Access Key and Secret Key at startup. If yo
 
       MINIO_ACCESS_KEY: minio123
       MINIO_SECRET_KEY: minio456
-      
+
 ./config/loki-config-s3.yml
 
      aws:
@@ -126,16 +153,16 @@ To set this example All In One project up, the following configurations have bee
     source s_local {
         internal();
     };
-    
+
     source s_network {
         default-network-drivers(
         );
     };
-    
+
     destination d_loki {
         syslog("promtail" transport("tcp") port("1514"));
     };
-    
+
     log {
             source(s_local);
             source(s_network);
@@ -143,26 +170,26 @@ To set this example All In One project up, the following configurations have bee
     };
 
 > Note: the above "`promtail`" configuration for `destination d_loki` is
-> the *hostname* where Promtail is running. Is this example, it happens
-> to be the Promtail *docker container* name that I configured for the
+> the _hostname_ where Promtail is running. Is this example, it happens
+> to be the Promtail _docker container_ name that I configured for the
 > All-In-One example.
 
 #### PROMTAIL CONFIGURATION (docker container listens on port 1514)
 
- **# promtail-config.yml**
+**# promtail-config.yml**
 
     server:
       http_listen_port: 9080
       grpc_listen_port: 0
-    
+
     positions:
       filename: /tmp/positions.yaml
-    
+
     clients:
       - url: http://loki:3100/loki/api/v1/push
-    
+
     scrape_configs:
-    
+
     - job_name: syslog
       syslog:
         listen_address: 0.0.0.0:1514
