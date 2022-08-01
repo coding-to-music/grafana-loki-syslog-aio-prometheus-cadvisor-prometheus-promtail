@@ -8,6 +8,8 @@ From / By Dave Schmid https://github.com/lux4rd0/grafana-loki-syslog-aio
 
 https://github.com/lux4rd0/grafana-loki-syslog-aio
 
+https://labs.lux4rd0.com/2021/01/oldskool-syslog-meets-newskool-loki/
+
 ## Environment variables:
 
 ```java
@@ -29,6 +31,8 @@ git push -u origin main
 ## grafana-loki-syslog-aio
 
 <center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio.png"></center>
+
+()[./images/loki_syslog_aio.png]
 
 ## About The Project
 
