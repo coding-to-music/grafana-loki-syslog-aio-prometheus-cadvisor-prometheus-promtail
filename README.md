@@ -32,7 +32,7 @@ git push -u origin main
 
 <center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio.png"></center>
 
-()[./images/loki_syslog_aio.png]
+![](./images/loki_syslog_aio.png)
 
 ## About The Project
 
