@@ -30,8 +30,6 @@ git push -u origin main
 
 ## grafana-loki-syslog-aio
 
-<center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio.png"></center>
-
 ![](./images/loki_syslog_aio.png)
 
 ## About The Project
@@ -39,6 +37,8 @@ git push -u origin main
 This Loki Syslog All-In-One example is geared to help you get up and running quickly with a Syslog ingestor and visualization of logs. It uses [Grafana Loki](https://grafana.com/oss/loki/) and Promtail as a receiver for forwarded syslog-ng logs. I wrote an [introductory blog post](https://labs.lux4rd0.com/2021/01/oldskool-syslog-meets-newskool-loki/) about how this AIO project came about as well (pesky intermittent network issues!!)
 
 <center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio_overview_sized.png"></center>
+
+![](./images/loki_syslog_aio_overview_sized.png)
 
 _Note that this All In One is geared towards getting network traffic from legacy syslog (RFC3164 UDP port 514) into Loki via [syslog-ng](https://www.syslog-ng.com/) and [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)._
 
@@ -124,6 +124,8 @@ A few other docker-compose files are also available:
 The _Syslog Generator_ configuration will need access to the Internet to do a local docker build from the configurations location in ./generator. It'll provide some named hosts and random INFO, WARN, DEBUG, ERROR logs sent over to syslog-ng/Loki.
 
 <center><img src="https://github.com/lux4rd0/grafana-loki-syslog-aio/blob/main/loki_syslog_aio_overview_generator_sized.png"></center>
+
+![](./images/loki_syslog_aio_overview_generator_sized.png)
 
 ## Configuration Review:
 
