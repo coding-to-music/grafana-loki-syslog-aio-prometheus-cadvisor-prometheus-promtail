@@ -28,6 +28,30 @@ git remote add origin git@github.com:coding-to-music/grafana-loki-syslog-aio-pro
 git push -u origin main
 ```
 
+## Results
+
+Grafana http://localhost:3000/?orgId=1&refresh=30s
+
+http://127.0.0.1:9000/
+
+http://127.0.0.1:42295/
+
+```
+docker compose up
+```
+
+Output
+
+```
+syslog-ng      | [2022-08-01T21:56:11.439768] WARNING: Configuration file format is too old, syslog-ng is running in compatibility mode. Please update it to use the syslog-ng 3.37 format at your time of convenience. To upgrade the configuration, please review the warnings about incompatible changes printed by syslog-ng, and once completed change the @version header at the top of the configuration file; config-version='3.29'
+
+syslog-ng      | [2022-08-01T21:56:11.453262] Included file was skipped because of a missing module; module='mod-java', location='/usr/share/syslog-ng/include/scl/kafka/kafka-java.conf:24:1'
+
+syslog-ng      | [2022-08-01T22:02:11.656218] Control command thread has started; control_command='STATS'
+syslog-ng      | [2022-08-01T22:02:11.656472] Control command thread is exiting now; control_command='STATS'
+syslog-ng      | [2022-08-01T22:02:11.657271] EOF on control channel, closing connection;
+```
+
 ## grafana-loki-syslog-aio
 
 ![](./images/loki_syslog_aio.png)
