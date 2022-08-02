@@ -73,6 +73,18 @@ http://127.0.0.1:42295/
 
 alertmanager_url: http://localhost:9093
 
+## Running
+
+This docker compose file works very well:
+
+Example Stack without MinIO, monitoring, or Syslog generator: Grafana, Loki with the filesystem, Promtail, syslog-ng
+
+```
+docker-compose -f ./docker-compose-filesystem.yml up
+```
+
+Default docker-compose.yml has many errors, perhaps due to minio? no idea...
+
 ```
 docker compose up
 ```
