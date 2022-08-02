@@ -28,6 +28,41 @@ git remote add origin git@github.com:coding-to-music/grafana-loki-syslog-aio-pro
 git push -u origin main
 ```
 
+## Scrape Configs
+
+```
+scrape_configs:
+
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['prometheus:9090']
+
+  - job_name: 'grafana'
+    static_configs:
+    - targets: ['grafana:3000']
+
+  - job_name: 'loki'
+    static_configs:
+    - targets: ['loki:3100']
+
+  - job_name: 'promtail'
+    static_configs:
+    - targets: ['promtail:9080']
+
+  - job_name: 'minio'
+    metrics_path: /minio/prometheus/metrics
+    static_configs:
+    - targets: ['minio:9000']
+
+  - job_name: 'node'
+    static_configs:
+    - targets: ['node-exporter:9100']
+
+  - job_name: 'caadvisor'
+    static_configs:
+    - targets: ['cadvisor:8080']
+```
+
 ## Results
 
 Grafana http://localhost:3000/?orgId=1&refresh=30s
@@ -35,6 +70,8 @@ Grafana http://localhost:3000/?orgId=1&refresh=30s
 http://127.0.0.1:9000/
 
 http://127.0.0.1:42295/
+
+alertmanager_url: http://localhost:9093
 
 ```
 docker compose up
@@ -50,6 +87,31 @@ syslog-ng      | [2022-08-01T21:56:11.453262] Included file was skipped because 
 syslog-ng      | [2022-08-01T22:02:11.656218] Control command thread has started; control_command='STATS'
 syslog-ng      | [2022-08-01T22:02:11.656472] Control command thread is exiting now; control_command='STATS'
 syslog-ng      | [2022-08-01T22:02:11.657271] EOF on control channel, closing connection;
+
+loki           | level=warn ts=2022-08-02T04:37:19.78273063Z caller=store.go:51 msg="running with DEPRECATED flag -store.max-look-back-period, use -querier.max-query-lookback instead."
+loki           | level=info ts=2022-08-02T04:37:19.784862418Z caller=main.go:103 msg="Starting Loki" version="(version=2.6.1, branch=HEAD, revision=6bd05c9a4)"
+loki           | level=info ts=2022-08-02T04:37:19.786285498Z caller=server.go:288 http=[::]:3100 grpc=[::]:9095 msg="server listening on addresses"
+loki           | level=warn ts=2022-08-02T04:37:19.7873903Z caller=experimental.go:20 msg="experimental feature in use" feature="In-memory (FIFO) cache - frontend.fifocache"
+loki           | level=warn ts=2022-08-02T04:37:19.788164236Z caller=fifo_cache.go:112 msg="running with DEPRECATED flag fifocache.size, use fifocache.max-size-items or fifocache.max-size-bytes instead" cache=frontend.fifocache
+loki           | level=warn ts=2022-08-02T04:37:19.788803279Z caller=fifo_cache.go:125 msg="running with DEPRECATED flag fifocache.interval, use fifocache.ttl instead" cache=frontend.fifocache
+
+loki           | creating WAL folder at "/wal": mkdir wal: permission denied
+loki           | error initialising module: ingester
+loki           | github.com/grafana/dskit/modules.(*Manager).initModule
+loki           |        /src/loki/vendor/github.com/grafana/dskit/modules/modules.go:122
+loki           | github.com/grafana/dskit/modules.(*Manager).InitModuleServices
+loki           |        /src/loki/vendor/github.com/grafana/dskit/modules/modules.go:92
+loki           | github.com/grafana/loki/pkg/loki.(*Loki).Run
+loki           |        /src/loki/pkg/loki/loki.go:341
+loki           | main.main
+loki           |        /src/loki/cmd/loki/main.go:105
+loki           | runtime.main
+loki           |        /usr/local/go/src/runtime/proc.go:255
+loki           | runtime.goexit
+loki           |        /usr/local/go/src/runtime/asm_amd64.s:1581
+loki           | level=info ts=2022-08-02T04:38:20.35188637Z caller=table_manager.go:134 msg="uploading tables"
+loki           | level=info ts=2022-08-02T04:38:20.351965384Z caller=table_manager.go:167 msg="handing over indexes to shipper"
+loki           | level=error ts=2022-08-02T04:38:20.352197105Z caller=log.go:103 msg="error running loki" err="creating WAL folder at \"/wal\": mkdir wal: permission denied\nerror initialising module: ingester\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:122\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:92\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:341\nmain.main\n\t/src/loki/cmd/loki/main.go:105\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:255\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1581"
 ```
 
 ## grafana-loki-syslog-aio
