@@ -9,7 +9,7 @@ services:
     ports:
       - published: 8080
         target: 8080
-    restart: always
+    restart: unless-stopped
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -30,7 +30,7 @@ services:
       - protocol: tcp
         published: 3000
         target: 3000
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./config/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
       - ./config/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
@@ -48,7 +48,7 @@ services:
       - protocol: tcp
         published: 3100
         target: 3100
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./config/loki-config-s3.yml:/etc/loki/loki-config.yml:ro
   minio:
@@ -74,7 +74,7 @@ services:
     ports:
       - published: 9000
         target: 9000
-    restart: always
+    restart: unless-stopped
   node-exporter:
     command: --path.rootfs=/host
     container_name: node-exporter
@@ -85,7 +85,7 @@ services:
     ports:
       - published: 9100
         target: 9100
-    restart: always
+    restart: unless-stopped
     volumes:
       - /:/host:ro,rslave
   prometheus:
@@ -101,7 +101,7 @@ services:
     ports:
       - published: 9090
         target: 9090
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
   promtail:
@@ -118,7 +118,7 @@ services:
       - protocol: tcp
         published: 9080
         target: 9080
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./config/promtail-config.yml:/etc/promtail/promtail-config.yml:ro
   syslog-ng:
@@ -136,7 +136,7 @@ services:
       - protocol: tcp
         published: 601
         target: 601
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./config/syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro
 version: "3.3"
